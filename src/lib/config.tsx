@@ -288,19 +288,19 @@ export const siteConfig = {
   featureSection: {
     title: "Simple. Seamless. Smart.",
     description:
-      "Discover how SkyAgent transforms your commands into action in four easy steps",
+      "Discover how Sequence3 transforms your commands into action in four easy steps",
     items: [
       {
         id: 1,
         title: "Ask Your AI Agent Directly",
         content:
-          "Speak or type your command—let SkyAgent capture your intent. Your request instantly sets the process in motion.",
+          "Speak or type your command—let Sequence3 capture your intent. Your request instantly sets the process in motion.",
         image:
           "https://images.unsplash.com/photo-1720371300677-ba4838fa0678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       },
       {
         id: 2,
-        title: "Let SkyAgent Process It",
+        title: "Let Sequence3 Process It",
         content:
           "We prioritize the needs and preferences of our users in our design process.",
         image:
@@ -691,7 +691,7 @@ export const siteConfig = {
   },
   quoteSection: {
     quote:
-      "SkyAgent has transformed our daily operations. Tasks that once consumed hours now complete in moments, freeing our team to focus on creativity and strategic growth.",
+      "Sequence3 has transformed our daily operations. Tasks that once consumed hours now complete in moments, freeing our team to focus on creativity and strategic growth.",
     author: {
       name: "Alex Johnson",
       role: "CTO, Innovatech",
@@ -966,7 +966,7 @@ export const siteConfig = {
   faqSection: {
     title: "Frequently Asked Questions",
     description:
-      "Answers to common questions about SkyAgent and its features. If you have any other questions, please don't hesitate to contact us.",
+      "Answers to common questions about Sequence3 and its features. If you have any other questions, please don't hesitate to contact us.",
     faQitems: [
       {
         id: 1,
@@ -976,9 +976,9 @@ export const siteConfig = {
       },
       {
         id: 2,
-        question: "How does SkyAgent work?",
+        question: "How does Sequence3 work?",
         answer:
-          "SkyAgent works by analyzing your requirements, leveraging advanced AI algorithms to understand context, and executing tasks based on your instructions. It can integrate with your workflow, learn from feedback, and continuously improve its performance.",
+          "Sequence3 works by analyzing your requirements, leveraging advanced AI algorithms to understand context, and executing tasks based on your instructions. It can integrate with your workflow, learn from feedback, and continuously improve its performance.",
       },
       {
         id: 3,
@@ -990,7 +990,7 @@ export const siteConfig = {
         id: 4,
         question: "Can I integrate my existing tools?",
         answer:
-          "Yes, SkyAgent is designed to be highly compatible with popular tools and platforms. We offer APIs and pre-built integrations for seamless connection with your existing workflow tools and systems.",
+          "Yes, Sequence3 is designed to be highly compatible with popular tools and platforms. We offer APIs and pre-built integrations for seamless connection with your existing workflow tools and systems.",
       },
       {
         id: 5,
@@ -1000,9 +1000,9 @@ export const siteConfig = {
       },
       {
         id: 6,
-        question: "How does SkyAgent save me time?",
+        question: "How does Sequence3 save me time?",
         answer:
-          "SkyAgent automates repetitive tasks, streamlines workflows, and provides quick solutions to common challenges. This automation and efficiency can save hours of manual work, allowing you to focus on more strategic activities.",
+          "Sequence3 automates repetitive tasks, streamlines workflows, and provides quick solutions to common challenges. This automation and efficiency can save hours of manual work, allowing you to focus on more strategic activities.",
       },
     ],
   },

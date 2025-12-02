@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "SkyAgent",
-  url: "https://agent-magicui.vercel.app",
+  name: "Sequence3",
+  url: "https://sequence3.se",
   description: "Your template for building AI-powered agents with Magic UI.",
   links: {
     twitter: "https://x.com/dillionverma",

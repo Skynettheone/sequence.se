@@ -59,7 +59,7 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = siteConfig.nav.links.map((item) =>
-        item.href.substring(1),
+        item.href.substring(1)
       );
 
       for (const section of sections) {
@@ -94,7 +94,7 @@ export function Navbar() {
     <header
       className={cn(
         "sticky z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0",
-        hasScrolled ? "top-6" : "top-4 mx-0",
+        hasScrolled ? "top-6" : "top-4 mx-0"
       )}
     >
       <motion.div
@@ -104,16 +104,17 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "mx-auto max-w-7xl rounded-2xl transition-all duration-300  xl:px-0",
+            "mx-auto max-w-7xl rounded-full transition-all duration-300  xl:px-0",
             hasScrolled
               ? "px-2 border border-border backdrop-blur-lg bg-background/75"
-              : "shadow-none px-7",
+              : "shadow-none px-7"
           )}
         >
           <div className="flex h-[56px] items-center justify-between p-4">
             <Link href="/" className="flex items-center gap-3">
-              <Icons.logo className="size-7 md:size-10" />
-              <p className="text-lg font-semibold text-primary">SkyAgent</p>
+              {/* <Icons.logo className="size-7 md:size-10" /> */}
+              <img src="./Q.svg" className="size-5 md:size-8" />
+              <p className="text-lg font-semibold text-primary">Sequence3</p>
             </Link>
 
             <NavMenu />
@@ -170,7 +171,7 @@ export function Navbar() {
                   <Link href="/" className="flex items-center gap-3">
                     <Icons.logo className="size-7 md:size-10" />
                     <p className="text-lg font-semibold text-primary">
-                      SkyAgent
+                      Sequence3
                     </p>
                   </Link>
                   <button
@@ -197,7 +198,7 @@ export function Navbar() {
                           onClick={(e) => {
                             e.preventDefault();
                             const element = document.getElementById(
-                              item.href.substring(1),
+                              item.href.substring(1)
                             );
                             element?.scrollIntoView({ behavior: "smooth" });
                             setIsDrawerOpen(false);
