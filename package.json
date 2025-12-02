@@ -1,6 +1,6 @@
 {
-  "name": "agent-template",
-  "version": "0.1.0",
+  "name": "Sequence3",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
