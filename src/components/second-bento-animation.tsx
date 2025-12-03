@@ -27,15 +27,12 @@ export function SecondBentoAnimation() {
             reverse
             speed={1}
           >
-            <Icons.boat />
-            <Icons.supabase />
-            <Icons.figma />
+            <Icons.whatsapp />
           </OrbitingCircles>
 
           <OrbitingCircles index={1} iconSize={60} speed={0.5}>
-            <Icons.workos />
-            <Icons.runwayml />
-            <Icons.gemini />
+            <Icons.messenger />
+            <Icons.telegram />
           </OrbitingCircles>
 
           <OrbitingCircles
@@ -45,9 +42,8 @@ export function SecondBentoAnimation() {
             reverse
             speed={0.5}
           >
-            <Icons.vercel />
-            <Icons.replit />
-            <Icons.posthog />
+            <Icons.facebook />
+            <Icons.instagram />
           </OrbitingCircles>
         </div>
       </div>

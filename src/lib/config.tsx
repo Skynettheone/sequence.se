@@ -419,7 +419,7 @@ export const siteConfig = {
         content: <SecondBentoAnimation />,
         title: "Seamless Integrations",
         description:
-          "Unite your favorite tools for effortless connectivity. Boost productivity through interconnected workflows.",
+          "Integrate channels, data sources, and tools into one unified system optimized for AI automation.",
       },
       {
         id: 3,

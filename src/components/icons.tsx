@@ -27,6 +27,21 @@ export const Icons = {
       </defs>
     </svg>
   ),
+  whatsapp: () => (
+    <img src="/whatsapp.svg" alt="whatsapp" className="size-8" />
+  ),
+  messenger: () => (
+    <img src="/messenger.svg" alt="messenger" className="size-9" />
+  ),
+  facebook: () => (
+    <img src="/facebook.svg" alt="facebook" className="size-10" />
+  ),
+  instagram: () => (
+    <img src="/instagram.svg" alt="instagram" className="size-9" />
+  ),
+  telegram: () => (
+    <img src="/telegram.svg" alt="telegram" className="size-10" />
+  ),
   soc2: ({ className }: { className?: string }) => (
     <svg
       width="46"
