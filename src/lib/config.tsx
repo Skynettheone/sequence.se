@@ -70,17 +70,17 @@ export const siteConfig = {
       </svg>
     ),
     badge: "Introducing AI-assisted Business Conversations",
-    title: "Meet your AI Conversation Agent",
+    title: "Meet your AI Agent Simplify Customer Conversations",
     description:
-      "Smart assistant that unifies messages, drafts replies, and manages customer workflows instantly.",
+      "AI assistant that unifies chats, drafts replies, and automates workflows so you can focus on real work.",
     cta: {
       primary: {
-        text: "Try for Free",
-        href: "/login",
+        text: "Join Waitlist",
+        href: "/waitlist",
       },
       secondary: {
-        text: "Log in",
-        href: "/app",
+        text: "View Pricing",
+        href: "#pricing",
       },
     },
   },
@@ -1027,13 +1027,13 @@ export const siteConfig = {
   },
   ctaSection: {
     id: "cta",
-    title: "Automate. Simplify. Thrive",
+    title: "Automate. Simplify. Grow.",
     backgroundImage: "/agent-cta-background.png",
     button: {
-      text: "Start Your 30-Day Free Trial Today",
-      href: "#",
+      text: "Join Waitlist",
+      href: "/waitlist",
     },
-    subtext: "Cancel anytime, no questions asked",
+    subtext: "We'll notify you when we launch",
   },
   footerLinks: [
     {
