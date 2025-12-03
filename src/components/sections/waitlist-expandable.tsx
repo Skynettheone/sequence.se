@@ -216,7 +216,6 @@ function WaitlistForm({
             name="use-case"
             placeholder="e.g., Instagram store, clinic bookings"
             autoComplete="off"
-            required
             className="w-full px-4 py-2.5 rounded-lg bg-[oklch(1_0_0)] border-0 text-ex placeholder:text-ex/60 focus:outline-none focus:ring-2 focus:ring-ex-foreground/20 transition-all resize-none text-xs h-10"
           />
         </div>
@@ -232,7 +231,6 @@ function WaitlistForm({
             id={companySizeId}
             name="team-size"
             autoComplete="off"
-            required
             className="w-full px-4 py-2.5 rounded-lg bg-[oklch(1_0_0)] border-0 text-ex focus:outline-none focus:ring-2 focus:ring-ex-foreground/20 transition-all text-xs h-10 team-size-select"
             defaultValue=""
           >
@@ -261,7 +259,6 @@ function WaitlistForm({
           rows={3}
           placeholder="Tell us what features you're looking forward to..."
           autoComplete="off"
-          required
           className="w-full px-4 py-3 rounded-lg bg-[oklch(1_0_0)] border-0 text-ex placeholder:text-ex/60 focus:outline-none focus:ring-2 focus:ring-ex-foreground/20 transition-all resize-none text-xs"
         />
       </div>
