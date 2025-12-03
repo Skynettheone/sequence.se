@@ -6,8 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { AnimatePresence, motion, useScroll } from "motion/react";
-import Image from "next/image";
+import { AnimatePresence, motion, useScroll, type Variants } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -15,13 +14,13 @@ const INITIAL_WIDTH = "70rem";
 const MAX_WIDTH = "800px";
 
 // Animation variants
-const overlayVariants = {
+const overlayVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
   exit: { opacity: 0 },
 };
 
-const drawerVariants = {
+const drawerVariants: Variants = {
   hidden: { opacity: 0, y: 100 },
   visible: {
     opacity: 1,
@@ -41,12 +40,12 @@ const drawerVariants = {
   },
 };
 
-const drawerMenuContainerVariants = {
+const drawerMenuContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
 
-const drawerMenuVariants = {
+const drawerMenuVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
@@ -97,6 +96,7 @@ export function Navbar() {
         "sticky z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0",
         hasScrolled ? "top-6" : "top-4 mx-0"
       )}
+      data-nav="primary"
     >
       <motion.div
         initial={{ width: INITIAL_WIDTH }}
@@ -114,14 +114,7 @@ export function Navbar() {
           <div className="flex h-[56px] items-center justify-between p-4">
             <Link href="/" className="flex items-center gap-3">
               {/* <Icons.logo className="size-7 md:size-10" /> */}
-              <Image
-                src="/purple.svg"
-                alt="Sequence3 mark"
-                width={32}
-                height={32}
-                className="size-5 md:size-8"
-                priority
-              />
+              <img src="./purple.svg" alt="Q" className="size-5 md:size-8" />
               <p className="text-lg font-semibold text-primary">Sequence3</p>
             </Link>
 
@@ -178,14 +171,7 @@ export function Navbar() {
                 <div className="flex items-center justify-between">
                   <Link href="/" className="flex items-center gap-3">
                     {/* <Icons.logo className="size-7 md:size-10" /> */}
-                    <Image
-                      src="/Q.svg"
-                      alt="Sequence3 wordmark"
-                      width={28}
-                      height={28}
-                      className="size-6 md:size-7"
-                      priority
-                    />
+                    <img src="./Q.svg" alt="Q" className="size-6 md:size-7" />
                     <p className="text-lg font-semibold text-primary">
                       Sequence3
                     </p>

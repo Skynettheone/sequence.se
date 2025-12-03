@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { siteConfig } from "@/lib/config";
-import Link from "next/link";
+import Image from "next/image"
+import { siteConfig } from "@/lib/config"
+import { WaitlistExpandable } from "@/components/sections/waitlist-expandable"
 
 export function CTASection() {
-  const { ctaSection } = siteConfig;
+  const { ctaSection } = siteConfig
 
   return (
     <section
@@ -24,17 +24,12 @@ export function CTASection() {
               {ctaSection.title}
             </h1>
             <div className="absolute bottom-10 flex flex-col items-center justify-center gap-2">
-              <Link
-                href={ctaSection.button.href}
-                className="bg-white text-black font-semibold text-sm h-10 w-fit px-4 rounded-full flex items-center justify-center shadow-md"
-              >
-                {ctaSection.button.text}
-              </Link>
+              <WaitlistExpandable label={ctaSection.button.text} />
               <span className="text-white text-sm">{ctaSection.subtext}</span>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
