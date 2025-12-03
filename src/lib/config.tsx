@@ -966,45 +966,63 @@ export const siteConfig = {
   faqSection: {
     title: "Frequently Asked Questions",
     description:
-      "Answers to common questions about Sequence3 and its features. If you have any other questions, please don't hesitate to contact us.",
+      "Clear answers about how Sequence3 helps your business manage conversations, improve response quality, and stay in full control.",
     faQitems: [
       {
         id: 1,
-        question: "What is an AI Agent?",
+        question: "What is Sequence3?",
         answer:
-          "An AI Agent is an intelligent software program that can perform tasks autonomously, learn from interactions, and make decisions to help achieve specific goals. It combines artificial intelligence and machine learning to provide personalized assistance and automation.",
+          "Sequence3 is a unified inbox and explainable AI assistant for SMEs. It brings Facebook, Instagram, and website chat into one place while helping you reply faster, stay consistent, and understand customers clearly."
       },
       {
         id: 2,
-        question: "How does Sequence3 work?",
+        question: "How does Sequence3 handle messages?",
         answer:
-          "Sequence3 works by analyzing your requirements, leveraging advanced AI algorithms to understand context, and executing tasks based on your instructions. It can integrate with your workflow, learn from feedback, and continuously improve its performance.",
+          "All customer messages flow into a single inbox where AI identifies intent, sentiment, and urgency. It prepares safe, context-aware reply drafts that you can approve, edit, or reject."
       },
       {
         id: 3,
-        question: "How secure is my data?",
+        question: "What does Human-in-the-Loop mean?",
         answer:
-          "We implement enterprise-grade security measures including end-to-end encryption, secure data centers, and regular security audits. Your data is protected according to industry best practices and compliance standards.",
+          "It means AI never sends final replies without human oversight for sensitive or low-confidence cases. You stay in control—AI assists, humans make the final decision."
       },
       {
         id: 4,
-        question: "Can I integrate my existing tools?",
+        question: "Does Sequence3 show the reasoning behind AI replies?",
         answer:
-          "Yes, Sequence3 is designed to be highly compatible with popular tools and platforms. We offer APIs and pre-built integrations for seamless connection with your existing workflow tools and systems.",
+          "Yes. Every AI action has a transparent explanation. You can see which intent, sentiment, knowledge, and rules were used to generate a reply, ensuring full clarity and trust."
       },
       {
         id: 5,
-        question: "Is there a free trial available?",
+        question: "Can Sequence3 understand Sinhala, English, and mixed text?",
         answer:
-          "Yes, we offer a 14-day free trial that gives you full access to all features. No credit card is required to start your trial, and you can upgrade or cancel at any time.",
+          "Yes. Sequence3 automatically detects Sinhala, English, and mixed-language messages and responds in the same comfortable style."
       },
       {
         id: 6,
-        question: "How does Sequence3 save me time?",
+        question: "How does Sequence3 keep my data secure?",
         answer:
-          "Sequence3 automates repetitive tasks, streamlines workflows, and provides quick solutions to common challenges. This automation and efficiency can save hours of manual work, allowing you to focus on more strategic activities.",
+          "Your conversations are protected through tenant isolation, role-based access control, and secure storage. Sensitive data follows strict minimisation and retention policies."
       },
-    ],
+      {
+        id: 7,
+        question: "How does the prioritisation feature work?",
+        answer:
+          "Sequence3 detects urgency and intent—pushing high-value, frustrated, or time-sensitive customers to the top of your inbox so you never miss critical conversations."
+      },
+      {
+        id: 8,
+        question: "Can I integrate Sequence3 with my existing tools?",
+        answer:
+          "Yes. Sequence3 works with Facebook, Instagram, and web chat out of the box, and offers tools to connect knowledge bases, inventory sheets, and additional services."
+      },
+      {
+        id: 9,
+        question: "Does the AI follow safety and fairness rules?",
+        answer:
+          "All AI replies pass through bias checks, rule compliance, and safety filters before being shown. Harmful or unfair suggestions are blocked automatically."
+      }
+    ]
   },
   ctaSection: {
     id: "cta",
