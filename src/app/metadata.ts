@@ -418,7 +418,7 @@ export const metadata: Metadata = {
         type: "image/png",
       },
       {
-        url: `${siteUrl}/agent-template-og.png`,
+        url: `${siteUrl}/thumbnail.webp`,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
