@@ -104,7 +104,7 @@ export function FooterSection() {
       </div>
       <div className="absolute bottom-4 left-6 right-6 z-20 text-center">
           <div className="text-xs text-muted-foreground mb-[2vh] bg-background p-0.5 flex items-center justify-center gap-2">
-            <span>© {new Date().getFullYear()} Sequence3 // CS-22. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Sequence3 // CS-22</span>
           </div>
           <div
               className="flex items-center justify-center px-3 py-0.6 border border-white/[0.07] transition-colors duration-700"
