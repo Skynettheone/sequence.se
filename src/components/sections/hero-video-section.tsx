@@ -1,28 +1,22 @@
-"use client";
-
-import { useState } from "react";
-import { BrowserWindow } from "@/components/ui/mock-browser-window";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 
 export function HeroVideoSection() {
-  const [sidebarItems] = useState([
-    { label: "Overview", active: true },
-    { label: "Users", badge: "12" },
-    { label: "Analytics", badge: "new" },
-    { label: "Settings" },
-  ]);
-
   return (
-    <div className="relative px-3 md:px-6 mt-10 w-full max-w-full">
-      <div className="relative w-full max-w-full min-w-0 aspect-video overflow-hidden">
-        <BrowserWindow
-          variant="chrome"
-          headerStyle="full"
-          size="xl"
-          showSidebar={true}
-          sidebarPosition="left"
-          url="https://sequence3.se/dashboard"
-          sidebarItems={sidebarItems}
-          className="h-full w-full max-w-full min-w-0 rounded-xl md:rounded-2xl"
+    <div className="relative px-6 mt-10">
+      <div className="relative size-full shadow-xl rounded-2xl overflow-hidden">
+        <HeroVideoDialog
+          className="block dark:hidden"
+          animationStyle="from-center"
+          videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+          // thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
+          thumbnailAlt="Sequence3 AI Conversation Workspace - Watch how Sequence3 simplifies customer conversations with AI-powered unified inbox"
+        />
+        <HeroVideoDialog
+          className="hidden dark:block"
+          animationStyle="from-center"
+          videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+          // thumbnailSrc="https://startup-template-sage.vercel.app/hero-dark.png"
+          thumbnailAlt="Sequence3 AI Conversation Workspace - Watch how Sequence3 simplifies customer conversations with AI-powered unified inbox"
         />
       </div>
     </div>

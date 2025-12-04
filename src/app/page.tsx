@@ -6,21 +6,25 @@ import { FooterSection } from "@/components/sections/footer-section";
 import { GrowthSection } from "@/components/sections/growth-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { PricingSection } from "@/components/sections/pricing-section";
+import { StructuredData } from "@/components/seo/structured-data";
 // import { QuoteSection } from "@/components/sections/quote-section";
 // import { TestimonialSection } from "@/components/sections/testimonial-section";
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-col items-center justify-center divide-y divide-border min-h-screen w-full">
-      <HeroSection />
-      <CompanyShowcase />
-      <BentoSection />
-      {/* <QuoteSection /> */}
-      <GrowthSection />
-      <PricingSection />
-      <FAQSection />
-      <CTASection />
-      <FooterSection />
-    </main>
+    <>
+      <StructuredData type="homepage" />
+      <main className="flex flex-col items-center justify-center divide-y divide-border min-h-screen w-full">
+        <HeroSection />
+        <CompanyShowcase />
+        <BentoSection />
+        {/* <QuoteSection /> */}
+        <GrowthSection />
+        <PricingSection />
+        <FAQSection />
+        <CTASection />
+        <FooterSection />
+      </main>
+    </>
   );
 }

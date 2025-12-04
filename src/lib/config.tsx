@@ -6,6 +6,7 @@ import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { DottedMap } from "@/components/ui/svg-map";
 // import { Globe } from "@/components/ui/globe";
 import { cn } from "@/lib/utils";
+import { socialLinks } from "@/lib/site";
 
 export const Highlight = ({
   children,
@@ -107,22 +108,41 @@ export const markers = [
 export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
-  name: "Cal AI",
-  description: "Smart scheduling powered by AI.",
-  cta: "Get Started",
+  name: "Sequence3",
+  description: "AI-powered unified inbox for SMEs. Manage conversations, automate replies, and stay in control with explainable AI.",
+  cta: "Join Waitlist",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  
   keywords: [
-    "AI Calendar",
-    "Smart Scheduling",
-    "Productivity",
-    "Time Management",
+    "Sequence3",
+    "AI Inbox",
+    "Unified Inbox",
+    "Explainable AI",
+    "AI Agent",
+    "SME Tools",
+    "Customer Support AI",
+    "Conversation Automation",
+    "Intent Detection",
+    "Sentiment Analysis",
+    "AI Reasoning",
+    "Human-in-the-loop",
+    "Business Messaging",
+    "Instagram DM Automation",
+    "Facebook Inbox Automation",
+    "WhatsApp Automation",
+    "Customer Segmentation",
+    "RAG Assistant",
+    "AI Draft Replies",
+    "Team Collaboration",
+    "AI Workflow",
   ],
+  
   links: {
-    email: "support@calai.app",
-    twitter: "https://twitter.com/calaiapp",
-    discord: "https://discord.gg/calaiapp",
-    github: "https://github.com/calaiapp",
-    instagram: "https://instagram.com/calaiapp",
+    // Use centralized social links configuration from @/lib/site
+    email: socialLinks.email,
+    twitter: socialLinks.twitter,
+    instagram: socialLinks.instagram,
+    facebook: socialLinks.facebook,
   },
   nav: {
     links: [
@@ -1012,10 +1032,10 @@ export const siteConfig = {
     {
       title: "Social",
       links: [
-        { id: 5, title: "Instagram", url: "#" },
-        { id: 6, title: "LinkedIn", url: "#" },
-        { id: 7, title: "GitHub", url: "#" },
-        { id: 8, title: "Twitter", url: "#" },
+        ...(socialLinks.facebook ? [{ id: 5, title: "Facebook", url: socialLinks.facebook }] : []),
+        ...(socialLinks.instagram ? [{ id: 6, title: "Instagram", url: socialLinks.instagram }] : []),
+        ...(socialLinks.linkedin ? [{ id: 7, title: "LinkedIn", url: socialLinks.linkedin }] : []),
+        ...(socialLinks.github ? [{ id: 8, title: "GitHub", url: socialLinks.github }] : []),
       ],
     },
   ],

@@ -14,10 +14,11 @@ export function CTASection() {
         <div className="h-[400px] md:h-[400px] overflow-hidden shadow-xl w-full border border-border rounded-xl bg-secondary relative z-20">
           <Image
             src={ctaSection.backgroundImage}
-            alt="Agent CTA Background"
+            alt="Sequence3 AI Agent - Join the waitlist to transform your customer conversations with AI-powered automation"
             className="absolute inset-0 w-full h-full object-cover object-right md:object-center"
             fill
             priority
+            sizes="(max-width: 768px) 100vw, 100vw"
           />
           <div className="absolute inset-0 -top-32 md:-top-40 flex flex-col items-center justify-center">
             <h1 className="text-white text-4xl md:text-7xl font-medium tracking-tighter max-w-xs md:max-w-xl text-center">

@@ -1,11 +1,80 @@
+/**
+ * Centralized Social Links Configuration
+ * Update all your social media links in one place here!
+ */
+export const socialLinks = {
+  // Primary Social Platforms
+  twitter: "https://x.com/sequence3",
+  x: "https://x.com/sequence3", // Alternative for Twitter/X
+  
+  // Developer Platforms
+  github: "https://github.com/sequence3",
+  
+  // Social Media
+  instagram: "https://instagram.com/sequence3",
+  facebook: "https://facebook.com/sequence3",
+  linkedin: "https://linkedin.com/company/sequence3",
+  
+  // Video Platforms
+  youtube: "https://youtube.com/@sequence3",
+  
+  // Messaging Platforms (if public profiles)
+  telegram: "https://t.me/sequence3",
+  discord: "https://discord.gg/sequence3",
+  
+  // Additional Platforms
+  tiktok: "", // Add if you have TikTok
+  threads: "", // Add if you have Threads
+  mastodon: "", // Add if you have Mastodon
+  
+  // Contact
+  email: "support@sequence3.se",
+};
+
+/**
+ * Get all active social links (non-empty URLs)
+ * Useful for generating lists dynamically
+ */
+export const getActiveSocialLinks = () => {
+  return Object.entries(socialLinks)
+    .filter(([_, url]) => url && typeof url === "string" && url.trim() !== "")
+    .reduce((acc, [key, url]) => {
+      acc[key as keyof typeof socialLinks] = url;
+      return acc;
+    }, {} as Record<string, string>);
+};
+
+/**
+ * Get social links array for structured data (sameAs)
+ * Returns all active social links as an array (excluding email)
+ */
+export const getSocialLinksArray = () => {
+  return Object.entries(socialLinks)
+    .filter(([key, url]) => 
+      key !== "email" && 
+      typeof url === "string" && 
+      url.trim() !== ""
+    )
+    .map(([_, url]) => url as string);
+};
+
 export const siteConfig = {
-  name: "Sequence3",
+  name: "Sequence3 - AI-powered Conversation Workspaces for SMEs",
   url: "https://sequence3.se",
-  description: "AI-driven Conversation Workspace",
+  description: "Sequence3 is a unified inbox and explainable AI assistant for SMEs. Bring Facebook, Instagram, and website chat into one place. Get AI-powered reply drafts, sentiment analysis, intent detection, and human-in-the-loop automation. Perfect for small and medium businesses looking to improve customer communication.",
+  shortDescription: "AI-driven Conversation Workspace",
   links: {
-    twitter: "https://x.com/sequence3",
-    github: "https://github.com/sequence3",
+    // Maintain backward compatibility
+    twitter: socialLinks.twitter,
+    github: socialLinks.github,
+    instagram: socialLinks.instagram,
+    facebook: socialLinks.facebook,
+    linkedin: socialLinks.linkedin,
+    youtube: socialLinks.youtube,
+    email: socialLinks.email,
   },
+  // Export social links directly for easy access
+  socialLinks,
 };
 
 export type SiteConfig = typeof siteConfig;
