@@ -141,8 +141,7 @@ export function WaitlistExpandable({
             </div>
             <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-ex-foreground/20">
               <p className="text-lg sm:text-xl lg:text-2xl text-ex-foreground leading-[150%] mb-4">
-                The waitlist has been a game-changer for our workflow. Highly
-                recommend joining early.
+              We’re onboarding users in controlled batches to maintain quality. Joining the waitlist guarantees priority access as we open new slots.
               </p>
             </div>
           </div>
