@@ -402,6 +402,16 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Sequence3",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/Q.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/Q.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
