@@ -11,6 +11,7 @@ export function StructuredData({ type = "homepage" }: StructuredDataProps) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: siteConfig.name,
+    alternateName: ["SQ3", "sq3", "SQ3 AI", "sq3 platform", "sq3 software", "SQ3 software", "sq3 chatbot", "SQ3 chatbot"],
     url: baseUrl,
     logo: `${baseUrl}/Q.svg`,
     description: siteConfig.description,
@@ -20,17 +21,33 @@ export function StructuredData({ type = "homepage" }: StructuredDataProps) {
       contactType: "Customer Support",
       email: siteConfig.socialLinks.email,
     },
+    knowsAbout: ["SQ3", "sq3", "AI Assistant", "Unified Inbox", "Customer Service"],
+    identifier: {
+      "@type": "PropertyValue",
+      name: "SQ3",
+      value: "sq3",
+    },
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: siteConfig.name,
+    alternateName: ["SQ3", "sq3", "sq3 ai", "SQ3 AI", "sq3 platform"],
     url: baseUrl,
     description: siteConfig.description,
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
+      alternateName: ["SQ3", "sq3"],
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${baseUrl}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 
@@ -38,6 +55,7 @@ export function StructuredData({ type = "homepage" }: StructuredDataProps) {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: siteConfig.name,
+    alternateName: ["SQ3", "sq3", "SQ3 AI Assistant", "SQ3 Unified Inbox", "sq3 platform"],
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: {
@@ -86,11 +104,39 @@ export function StructuredData({ type = "homepage" }: StructuredDataProps) {
     ],
   };
 
+  // Brand schema for better brand recognition
+  const brandSchema = {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    name: siteConfig.name,
+    alternateName: ["SQ3", "sq3", "SQ3 AI", "sq3 platform"],
+    logo: `${baseUrl}/Q.svg`,
+    url: baseUrl,
+  };
+
+  // Additional organization details
+  const additionalOrganizationDetails = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    alternateName: ["SQ3", "sq3"],
+    url: baseUrl,
+    knowsAbout: [
+      "SQ3",
+      "sq3 ai",
+      "AI Assistant",
+      "Unified Inbox",
+      "Customer Service Automation",
+    ],
+  };
+
   const schemas: Array<Record<string, unknown>> = [
     organizationSchema,
     websiteSchema,
     breadcrumbSchema,
     faqSchema,
+    brandSchema,
+    additionalOrganizationDetails,
   ];
 
   if (type === "product") {

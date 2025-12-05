@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 
 // Configuration exports
 export const runtime = "edge";
-export const alt = "Sequence3 - AI-powered agents with Magic UI";
+export const alt = "Sequence3 - AI-powered Unified Inbox & Conversation Workspace for SMEs";
 export const size = {
   width: 1200,
   height: 630,

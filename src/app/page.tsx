@@ -7,11 +7,33 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   description: siteConfig.description,
+  keywords: [
+    "sq3",
+    "SQ3",
+    "sq3 ai",
+    "sq3 platform",
+    "sq3 unified inbox",
+    "Sequence3 sq3",
+    "sq3 sequence3",
+  ],
   openGraph: {
     description: siteConfig.description,
+    images: [
+      {
+        url: `${siteConfig.url}/thumbnail.webp`,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+        type: "image/webp",
+      },
+    ],
   },
   twitter: {
     description: siteConfig.description,
+    images: [`${siteConfig.url}/thumbnail.webp`],
+  },
+  alternates: {
+    canonical: siteConfig.url,
   },
 };
 

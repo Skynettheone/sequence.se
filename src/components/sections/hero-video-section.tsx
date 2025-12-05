@@ -7,14 +7,14 @@ export function HeroVideoSection() {
         <HeroVideoDialog
           className="block dark:hidden"
           animationStyle="from-center"
-          videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+          videoSrc="https://www.youtube.com/embed/mfv0V1SxbNA?si=TRexsoCL_orxhHGE"
           thumbnailSrc="/thumbnail.webp"
           thumbnailAlt="Sequence3 AI Conversation Workspace - Watch how Sequence3 simplifies customer conversations with AI-powered unified inbox"
         />
         <HeroVideoDialog
           className="hidden dark:block"
           animationStyle="from-center"
-          videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+          videoSrc="https://www.youtube.com/embed/mfv0V1SxbNA?si=TRexsoCL_orxhHGE"
           thumbnailSrc="/thumbnail.webp"
           thumbnailAlt="Sequence3 AI Conversation Workspace - Watch how Sequence3 simplifies customer conversations with AI-powered unified inbox"
         />

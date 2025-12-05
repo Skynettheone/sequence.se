@@ -13,6 +13,31 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   // Note: Google no longer uses keywords meta tag, but keeping for reference
   keywords: [
+    // Primary SEO Keywords - SQ3 (invisible to users)
+    "sq3",
+    "SQ3",
+    "sq3 ai",
+    "SQ3 AI",
+    "sq3 platform",
+    "SQ3 platform",
+    "sq3 software",
+    "SQ3 software",
+    "sq3 chatbot",
+    "SQ3 chatbot",
+    "sq3 assistant",
+    "SQ3 assistant",
+    "sq3 inbox",
+    "SQ3 inbox",
+    "sq3 unified inbox",
+    "SQ3 unified inbox",
+    "sq3 ai assistant",
+    "SQ3 AI assistant",
+    "sq3 conversation workspace",
+    "SQ3 conversation workspace",
+    "sq3 customer service",
+    "SQ3 customer service",
+    "sq3 sequence3",
+    "Sequence3 sq3",
     // Core Brand & Product
     "Sequence3",
     "Sequence3 AI",
@@ -404,13 +429,15 @@ export const metadata: Metadata = {
   creator: "Sequence3",
   icons: {
     icon: [
+      { url: "/purple.png", sizes: "1149x1149", type: "image/png" },
       { url: "/favicon.ico", sizes: "any" },
       { url: "/Q.svg", type: "image/svg+xml" },
     ],
     apple: [
+      { url: "/purple.png", sizes: "1149x1149", type: "image/png" },
       { url: "/Q.svg", type: "image/svg+xml" },
     ],
-    shortcut: "/favicon.ico",
+    shortcut: "/purple.png",
   },
   openGraph: {
     type: "website",
@@ -435,10 +462,21 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     creator: "@sequence3",
     site: "@sequence3",
-    images: [ogImageUrl],
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
   },
   alternates: {
     canonical: siteUrl,
+    // Add alternate domains for SQ3 keyword (if you set up redirects)
+    languages: {
+      "en": siteUrl,
+    },
   },
   category: "technology",
   classification: "Business Software",
@@ -462,6 +500,8 @@ export const metadata: Metadata = {
   other: {
     "application-name": "Sequence3",
     "apple-mobile-web-app-title": "Sequence3",
+    "sq3": "Sequence3",
+    "alternate-name": "SQ3",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "mobile-web-app-capable": "yes",
