@@ -360,14 +360,14 @@ export const Feature = ({
             }}
           >
             {featureItems.map((item, index) => (
-              <a
-                key={item.id}
-                className="card relative grid h-full max-w-64 shrink-0 items-start justify-center p-3 bg-background border-l last:border-r border-t border-b first:rounded-tl-xl last:rounded-tr-xl"
-                onClick={() => setCurrentIndex(index)}
-                style={{
-                  scrollSnapAlign: "center",
-                }}
-              >
+              <li key={item.id} className="shrink-0">
+                <a
+                  className="card relative grid h-full max-w-64 shrink-0 items-start justify-center p-3 bg-background border-l last:border-r border-t border-b first:rounded-tl-xl last:rounded-tr-xl"
+                  onClick={() => setCurrentIndex(index)}
+                  style={{
+                    scrollSnapAlign: "center",
+                  }}
+                >
                 <div
                   className={cn(
                     "absolute overflow-hidden rounded-lg transition-opacity",
@@ -419,6 +419,7 @@ export const Feature = ({
                   </p>
                 </div>
               </a>
+              </li>
             ))}
           </ul>
         </div>

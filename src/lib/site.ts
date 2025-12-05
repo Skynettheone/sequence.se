@@ -4,19 +4,19 @@
  */
 export const socialLinks = {
   // Primary Social Platforms
-  twitter: "https://x.com/sequence3",
-  x: "https://x.com/sequence3", // Alternative for Twitter/X
+  twitter: "https://x.com/Sequence_3",
+  x: "https://x.com/Sequence_3", // Alternative for Twitter/X
   
   // Developer Platforms
   github: "https://github.com/sequence3",
   
   // Social Media
-  instagram: "https://instagram.com/sequence3",
-  facebook: "https://facebook.com/sequence3",
-  linkedin: "https://linkedin.com/company/sequence3",
+  instagram: "https://www.instagram.com/sequence3.se/",
+  facebook: "https://www.facebook.com/sq3.io",
+  linkedin: "https://www.linkedin.com/company/sequence3/",
   
   // Video Platforms
-  youtube: "https://youtube.com/@sequence3",
+  youtube: "https://www.youtube.com/@sequencethree",
   
   // Messaging Platforms (if public profiles)
   telegram: "https://t.me/sequence3",
@@ -28,7 +28,7 @@ export const socialLinks = {
   mastodon: "", // Add if you have Mastodon
   
   // Contact
-  email: "support@sequence3.se",
+  email: "support@sq3.io",
 };
 
 /**

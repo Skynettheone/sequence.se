@@ -288,7 +288,7 @@ export const siteConfig = {
         content: <FirstBentoAnimation />,
         title: "Real-time AI Collaboration",
         description:
-          "Enable your team to collaborate with AI instantly—ensuring consistent, fast, and accurate customer communication.",
+          "Enable your team to collaborate with AI instantly, ensuring consistent, fast, and accurate customer communication.",
       },
       {
         id: 2,
@@ -309,14 +309,14 @@ export const siteConfig = {
         ),
         title: "Instant Insight Reporting",
         description:
-          "See what customers ask, feel, and buy—instantly. Sequence3 reveals patterns that help you improve service and grow faster.",
+          "Instantly see what customers ask, feel, and buy. Sequence3 reveals patterns that help you improve service and grow faster.",
       },
       {
         id: 4,
         content: <FourthBentoAnimation once={false} />,
         title: "Intelligent Customer Grouping",
         description:
-          "Automatically group customers by intent, sentiment, and behavior—helping you personalize responses and drive smarter engagement."
+          "Automatically group customers by intent, sentiment, and behavior, helping you personalize responses and drive smarter engagement."
         },
     ],
   },
@@ -345,7 +345,7 @@ export const siteConfig = {
   growthSection: {
     title: "Built for Secure Growth",
     description:
-      "Where advanced security meets seamless scalability—protecting your data while keeping humans in full control of AI decisions.",
+      "Where advanced security meets seamless scalability, protecting your data while keeping humans in full control of AI decisions.",
     items: [
       {
         id: 1,

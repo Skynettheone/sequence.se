@@ -133,6 +133,7 @@ export function Navbar() {
               <button
                 className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
                 onClick={toggleDrawer}
+                aria-label={isDrawerOpen ? "Close menu" : "Open menu"}
               >
                 {isDrawerOpen ? (
                   <X className="size-5" />
@@ -179,6 +180,7 @@ export function Navbar() {
                   <button
                     onClick={toggleDrawer}
                     className="border border-border rounded-md p-1 cursor-pointer"
+                    aria-label="Close menu"
                   >
                     <X className="size-5" />
                   </button>
