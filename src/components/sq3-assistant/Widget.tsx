@@ -14,8 +14,8 @@ import {
 import {
   Message,
   MessageContent,
-  MessageResponse,
 } from '@/components/ai-elements/message';
+import { ResponseStream } from '@/components/ui/response-stream';
 import {
   PromptInput,
   PromptInputBody,
@@ -44,7 +44,6 @@ export function SQ3AssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [status, setStatus] = useState<'ready' | 'submitted' | 'streaming' | 'error'>('ready');
-  const [error, setError] = useState<string | null>(null);
   const messagesRef = useRef<ChatMessage[]>([]);
   messagesRef.current = messages;
 
@@ -61,7 +60,6 @@ export function SQ3AssistantWidget() {
     const allMessages = [...messagesRef.current, userMessage];
     setMessages(allMessages);
     setStatus('submitted');
-    setError(null);
 
     try {
       const response = await fetch('/api/chat', {
@@ -94,9 +92,16 @@ export function SQ3AssistantWidget() {
       setMessages((prev) => [...prev, assistantMessage]);
       setStatus('ready');
     } catch (err: any) {
-      setError(err.message || 'An error occurred');
-      setStatus('error');
+      // Silently handle errors - log to console but don't show to users
       console.error('Chat error:', err);
+      setStatus('ready');
+      // Optionally show a friendly assistant message instead
+      const errorMessage: ChatMessage = {
+        id: nanoid(),
+        role: 'assistant',
+        content: "I'm having trouble processing that right now. Could you please try rephrasing your question?",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     }
   }, []);
 
@@ -191,7 +196,15 @@ export function SQ3AssistantWidget() {
                 messages.map((message) => (
                   <Message key={message.id} from={message.role}>
                     <MessageContent>
-                      <MessageResponse>{message.content}</MessageResponse>
+                      {message.role === 'assistant' ? (
+                        <ResponseStream
+                          textStream={message.content}
+                          mode="typewriter"
+                          speed={30}
+                        />
+                      ) : (
+                        message.content
+                      )}
                     </MessageContent>
                   </Message>
                 ))
@@ -200,25 +213,15 @@ export function SQ3AssistantWidget() {
               {status === 'streaming' && (
                 <Message from="assistant">
                   <MessageContent>
-                    <MessageResponse>Thinking...</MessageResponse>
+                    <ResponseStream
+                      textStream="Thinking..."
+                      mode="typewriter"
+                      speed={50}
+                    />
                   </MessageContent>
                 </Message>
               )}
 
-              {error && (
-                <div className="sq3-widget-error">
-                  <p>{error}</p>
-                  <button
-                    onClick={() => {
-                      setError(null);
-                      setStatus('ready');
-                    }}
-                    className="sq3-widget-error-dismiss"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              )}
             </ConversationContent>
             <ConversationScrollButton />
           </Conversation>

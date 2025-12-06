@@ -115,10 +115,10 @@ Answer the user's question about Sequence3 (SQ3) in a SHORT, CREATIVE, and CONCI
     });
   } catch (error: any) {
     console.error('Chat API error:', error);
+    // Only return generic error message to client, details logged server-side
     return NextResponse.json(
       {
-        error: 'Failed to process chat request',
-        details: error.message || 'Unknown error',
+        error: 'Failed to process chat request. Please try again.',
       },
       { status: 500 }
     );
