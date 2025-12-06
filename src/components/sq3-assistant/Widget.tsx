@@ -44,6 +44,7 @@ export function SQ3AssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [status, setStatus] = useState<'ready' | 'submitted' | 'streaming' | 'error'>('ready');
+  const [isExpandableOpen, setIsExpandableOpen] = useState(false);
   const messagesRef = useRef<ChatMessage[]>([]);
   messagesRef.current = messages;
 
@@ -109,6 +110,54 @@ export function SQ3AssistantWidget() {
     handleSubmit({ text: suggestion, files: [] });
   }, [handleSubmit]);
 
+  // Detect when expandable screen (Waitlist) is open and hide widget
+  useEffect(() => {
+    const checkExpandableOpen = () => {
+      // Check if expandable screen element exists in DOM (it has fixed inset-0 and high z-index)
+      // The expandable screen uses z-[10000] or z-[1000] class
+      const expandableExists = document.querySelector('[class*="fixed inset-0"][class*="z-"]:not(.sq3-widget-panel-wrapper)');
+      // Also check if body overflow is hidden (expandable screen sets this when lockScroll is true)
+      const bodyOverflowHidden = document.body.style.overflow === 'hidden';
+      // Consider expandable open if both conditions are met (more reliable)
+      const isOpen = !!expandableExists && bodyOverflowHidden;
+      setIsExpandableOpen(isOpen);
+    };
+
+    // Check initially
+    checkExpandableOpen();
+
+    // Watch for changes to body overflow style
+    const observer = new MutationObserver(checkExpandableOpen);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style'],
+      subtree: false,
+    });
+
+    // Also watch for DOM changes (expandable screen appearing/disappearing)
+    const domObserver = new MutationObserver(checkExpandableOpen);
+    domObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Check periodically as a fallback
+    const interval = setInterval(checkExpandableOpen, 100);
+
+    return () => {
+      observer.disconnect();
+      domObserver.disconnect();
+      clearInterval(interval);
+    };
+  }, []);
+
+  // Close widget when expandable screen opens
+  useEffect(() => {
+    if (isExpandableOpen && isOpen) {
+      setIsOpen(false);
+    }
+  }, [isExpandableOpen, isOpen]);
+
   // Close on ESC key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -122,8 +171,8 @@ export function SQ3AssistantWidget() {
 
   return (
     <>
-      {/* Fixed Sticker Button in Bottom-Right Corner - Hide when panel is open */}
-      {!isOpen && (
+      {/* Fixed Sticker Button in Bottom-Right Corner - Hide when panel is open or expandable is open */}
+      {!isOpen && !isExpandableOpen && (
         <div
           className="sq3-widget-sticker-container"
           onClick={() => setIsOpen(true)}
@@ -142,9 +191,9 @@ export function SQ3AssistantWidget() {
         </div>
       )}
 
-      {/* Chat Panel - Expandable animation */}
+      {/* Chat Panel - Expandable animation - Hide when expandable screen is open */}
       <div 
-        className={`sq3-widget-panel-wrapper ${isOpen ? 'sq3-widget-panel-open' : ''}`}
+        className={`sq3-widget-panel-wrapper ${isOpen && !isExpandableOpen ? 'sq3-widget-panel-open' : ''}`}
         onClick={(e) => {
           // Close panel when clicking backdrop
           if (e.target === e.currentTarget) {
