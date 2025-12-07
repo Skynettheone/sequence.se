@@ -52,9 +52,15 @@ const getMatchesFromEmbeddings = async (
     throw new Error('Embeddings array is empty');
   }
 
-  // Validate dimension count (should be 768 for Gemini text-embedding-004)
-  if (embeddings.length !== 768) {
-    console.warn(`Expected 768 dimensions, got ${embeddings.length}. Proceeding anyway.`);
+  // Validate dimension count (should be 1536 for OpenAI text-embedding-3-small)
+  // But allow flexibility for different embedding models
+  if (embeddings.length === 0) {
+    throw new Error('Embeddings array is empty');
+  }
+  
+  // Log dimension for debugging (OpenAI typically uses 1536, but can vary)
+  if (embeddings.length !== 1536 && embeddings.length !== 768) {
+    console.warn(`Unexpected embedding dimensions: ${embeddings.length}. Expected 1536 (OpenAI) or 768 (Gemini). Proceeding anyway.`);
   }
 
   // Get Pinecone client

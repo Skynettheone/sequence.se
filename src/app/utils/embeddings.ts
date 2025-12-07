@@ -1,47 +1,51 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+// Initialize OpenAI (similar to how Gemini was initialized)
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY || '',
+});
 
-export async function getEmbeddings(input: string): Promise<number[]> {
+export async function getEmbeddings(input: string, retryCount = 0): Promise<number[]> {
   try {
-    if (!process.env.GEMINI_API_KEY) {
-      throw new Error('GEMINI_API_KEY environment variable not set');
+    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY.trim() === '') {
+      throw new Error('OPENAI_API_KEY environment variable not set');
     }
 
-    // Use Gemini embedding model: text-embedding-004
-    const embeddingModel = genAI.getGenerativeModel({ model: 'text-embedding-004' });
-    const embeddingResponse = await embeddingModel.embedContent(
-      input.replace(/\n/g, ' ')
-    );
+    if (!input || input.trim().length === 0) {
+      throw new Error('Input text is empty');
+    }
+
+    // Use OpenAI embedding model: text-embedding-3-small (1536 dimensions)
+    const response = await openai.embeddings.create({
+      model: 'text-embedding-3-small', // Using small model for cost-effectiveness
+      input: input.replace(/\n/g, ' ').trim(),
+    });
 
     // Extract embedding values
-    const embeddingData = embeddingResponse.embedding;
-    let embedding: number[] = [];
+    const embedding = response.data[0]?.embedding;
 
-    if (Array.isArray(embeddingData)) {
-      embedding = embeddingData;
-    } else if (embeddingData && typeof embeddingData === 'object') {
-      // Try different possible property names
-      embedding = (embeddingData as any).values ||
-        (embeddingData as any).embedding ||
-        Object.values(embeddingData).filter((v): v is number => typeof v === 'number') as number[];
+    if (!embedding || embedding.length === 0) {
+      throw new Error('Failed to extract embedding from OpenAI response');
     }
 
-    if (embedding.length === 0) {
-      throw new Error('Failed to extract embedding from Gemini response');
-    }
-
-    // Gemini text-embedding-004 returns 768 dimensions
+    // OpenAI text-embedding-3-small returns 1536 dimensions
     // Validate dimension count
-    if (embedding.length !== 768) {
-      console.warn(`Expected 768 dimensions, got ${embedding.length}. Using as-is.`);
+    if (embedding.length !== 1536) {
+      console.warn(`Expected 1536 dimensions, got ${embedding.length}. Using as-is.`);
     }
 
-    // Return 768-dimensional embedding as-is (no padding/truncation)
+    // Return 1536-dimensional embedding
     return embedding;
-  } catch (e) {
-    console.error('Error calling Gemini embedding API: ', e);
-    throw new Error(`Error calling Gemini embedding API: ${e}`);
+  } catch (e: any) {
+    // Retry once on failure (for transient errors)
+    if (retryCount < 1 && (e.status === 429 || e.status >= 500)) {
+      console.log(`OpenAI embedding API error, retrying... (attempt ${retryCount + 1})`);
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1s before retry
+      return getEmbeddings(input, retryCount + 1);
+    }
+    
+    console.error('Error calling OpenAI embedding API: ', e);
+    throw new Error(`Error calling OpenAI embedding API: ${e.message || e}`);
   }
 }
 
