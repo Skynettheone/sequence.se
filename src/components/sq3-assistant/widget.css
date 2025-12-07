@@ -135,6 +135,15 @@
   letter-spacing: -0.01em;
 }
 
+.sq3-widget-beta {
+  font-size: 10px;
+  font-weight: 700;
+  color: #2eff94;
+  letter-spacing: 0.05em; 
+  margin-left: 0.4vh;
+  text-transform: uppercase;
+}
+
 /* Rounded-full Chat Container */
 .sq3-widget-chat-container {
   flex: 1;
@@ -222,7 +231,7 @@
 
 .sq3-widget-empty-text {
   color: var(--muted-foreground);
-  font-size: 1rem;
+  font-size: 0.85rem;
   margin-top: 4rem;
 }
 

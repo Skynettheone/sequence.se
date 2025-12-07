@@ -224,7 +224,7 @@ export function SQ3AssistantWidget() {
                 height={24}
                 className="sq3-widget-logo"
               />
-              <span className="sq3-widget-title-text">Sequence3.ai</span>
+              <span className="sq3-widget-title-text">Sequence3.ai <span className="sq3-widget-beta">Beta</span></span>
             </div>
           </div>
 
@@ -237,7 +237,8 @@ export function SQ3AssistantWidget() {
                 <ConversationEmptyState>
                   <div className="sq3-widget-empty-content">
                     <p className="sq3-widget-empty-text">
-                      Hello there!<br />
+                      {/* Hey! 👋 I'm Sequence3.ai<br /> */}
+                      Ask me anything about how Sequence3 can help grow your business!
                     </p>
                   </div>
                 </ConversationEmptyState>
