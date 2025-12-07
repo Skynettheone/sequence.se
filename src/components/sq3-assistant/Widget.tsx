@@ -237,7 +237,7 @@ export function SQ3AssistantWidget() {
                 <ConversationEmptyState>
                   <div className="sq3-widget-empty-content">
                     <p className="sq3-widget-empty-text">
-                      How can I assist you <br /> today?
+                      Hello there!<br />
                     </p>
                   </div>
                 </ConversationEmptyState>

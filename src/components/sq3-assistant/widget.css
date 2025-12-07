@@ -219,8 +219,8 @@
 
 .sq3-widget-empty-text {
   color: var(--muted-foreground);
-  font-size: 14px;
-  margin-top: 3rem;
+  font-size: 1rem;
+  margin-top: 4rem;
 }
 
 /* Suggestions */
