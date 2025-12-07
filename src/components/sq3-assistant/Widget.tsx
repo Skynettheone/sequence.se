@@ -178,10 +178,10 @@ export function SQ3AssistantWidget() {
           onClick={() => setIsOpen(true)}
         >
           <StickerPeel
-            imageSrc="/purple.svg"
-            width={50}
-            rotate={15}
-            peelBackHoverPct={10}
+            imageSrc="/sq3ai.svg"
+            width={90}
+            rotate={0}
+            peelBackHoverPct={30}
             peelBackActivePct={10}
             shadowIntensity={0.0}
             lightingIntensity={0.1}
@@ -218,7 +218,7 @@ export function SQ3AssistantWidget() {
           <div className="sq3-widget-title-header">
             <div className="sq3-widget-title-container">
               <Image
-                src="/purple.svg"
+                src="/sq3ai.svg"
                 alt="Sequence3 logo"
                 width={24}
                 height={24}

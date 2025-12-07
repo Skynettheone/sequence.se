@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1149" height="1149" viewBox="0 0 1149 1149" fill="none" transform="matrix(1, 0, 0, 1, 0, 0)">
+  <g clip-path="url(#clip0_74_279)">
+    <path d="M 111.903 665.115 L 72.448 545.063 C 67.901 531.23 72.721 516.051 84.391 507.363 L 496.98 200.651 C 506.095 193.869 518.003 192.133 528.667 195.999 L 613.011 226.579 C 626.401 231.433 635.328 244.176 635.293 258.419 L 634.34 872.874 C 634.305 891.533 619.178 906.64 600.523 906.64 L 497.884 906.64 C 479.484 906.64 464.459 891.924 464.083 873.526 L 456.981 523.445 C 456.418 495.677 424.459 480.395 402.483 497.38 L 164.697 681.299 C 146.231 695.586 119.178 687.3 111.887 665.115 L 111.903 665.115 Z" fill="url(#paint2_linear_74_279)" style=""/>
+    <text style="fill: rgb(79, 57, 246); font-family: &quot;Helvetica Neue&quot;; font-size: 29.5524px; font-weight: 500; letter-spacing: 1.2px; paint-order: fill; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.96921px; word-spacing: -1.3px; white-space: pre;" transform="matrix(12.843336, 0, 0, 14.011315, -5409.728516, -13411.042969)" x="472.88" y="1019.92">.ai</text>
+  </g>
+  <defs fill="#2eff94">
+    <linearGradient id="paint2_linear_74_279" x1="99.3011" y1="873.036" x2="489.002" y2="873.036" gradientUnits="userSpaceOnUse" fill="#2eff94" gradientTransform="matrix(1.44867, 0, 0, 1.44867, -73.093287, -714.414307)">
+      <stop stop-color="#2eff94" fill="#2eff94"/>
+      <stop offset="1" stop-color="#2eff94" fill="#2eff94"/>
+    </linearGradient>
+    <clipPath id="clip0_74_279" fill="#2eff94">
+      <rect width="1136" height="1089" fill="white" transform="translate(7 30)"/>
+    </clipPath>
+  </defs>
+</svg>

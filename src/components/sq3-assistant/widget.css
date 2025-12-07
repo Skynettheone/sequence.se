@@ -117,11 +117,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: -1vh;
+  margin-bottom: -1vh;
 }
 
 .sq3-widget-logo {
-  width: 24px;
-  height: 24px;
+  width: 4vh;
+  height: 4vh;
+  /* margin-bottom: -1vh; */
   flex-shrink: 0;
 }
 

@@ -74,18 +74,46 @@ const getMatchesFromEmbeddings = async (
 
   try {
     // Query the index with the defined request
-    const queryResult = await pineconeNamespace.query({
-      vector: embeddings,
-      topK,
-      includeMetadata: true,
-    });
+    // Using includeValues: false to reduce response size, but we need metadata
+    // Add timeout and retry logic for connection issues
+    const queryResult = await Promise.race([
+      pineconeNamespace.query({
+        vector: embeddings,
+        topK,
+        includeMetadata: true,
+        includeValues: false, // We don't need the vectors back
+      }),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Pinecone query timeout after 10 seconds')), 10000)
+      )
+    ]) as any;
     
     // Return matches in the expected format
-    return (queryResult.matches || []).map((match) => ({
-      id: match.id || '',
-      score: match.score,
-      metadata: (match.metadata || {}) as Metadata,
-    }));
+    // Handle both old API (metadata) and new API (fields) formats
+    const matches = ((queryResult.matches || []) as any[]).map((match: any) => {
+      // New Pinecone API might return data in 'fields' instead of 'metadata'
+      const metadata = (match.metadata || match.fields || {}) as Metadata;
+      
+      // Log first match structure for debugging
+      if (match === queryResult.matches?.[0]) {
+        console.log('First match structure:', {
+          id: match.id,
+          score: match.score,
+          hasMetadata: !!match.metadata,
+          hasFields: !!match.fields,
+          metadataKeys: match.metadata ? Object.keys(match.metadata) : [],
+          fieldsKeys: match.fields ? Object.keys(match.fields) : [],
+        });
+      }
+      
+      return {
+        id: match.id || '',
+        score: match.score,
+        metadata: metadata,
+      };
+    });
+    
+    return matches;
   } catch (e: any) {
     // Log detailed error information
     console.error('Error querying embeddings:', {
