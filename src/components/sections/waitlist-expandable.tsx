@@ -8,6 +8,7 @@ import {
   type FormEvent,
 } from "react"
 
+import NumberFlow from "@number-flow/react"
 import { Button } from "@/components/ui/button"
 import {
   ExpandableScreen,
@@ -189,25 +190,7 @@ function WaitlistForm({
 }: WaitlistFormProps) {
   const { collapse } = useExpandableScreen()
 
-  // ★ SCALE COUNT → SMOOTH DARK-TO-LIGHT PROGRESSION
-  const getHexColor = (count: number) => {
-    // 250 signups to reach white: 0xFFFFFF / 250 ≈ 67109
-    const scaled = count * 67109
-    const hex = Math.min(scaled, 0xffffff).toString(16).padStart(6, "0")
-    return `#${hex}`
-  }
-
-  const isLightColor = (hex: string) => {
-    const r = parseInt(hex.slice(1, 3), 16)
-    const g = parseInt(hex.slice(3, 5), 16)
-    const b = parseInt(hex.slice(5, 7), 16)
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-    return luminance > 0.5
-  }
-
-  const currentCount = waitlistCount ?? 0
-  const bgColor = getHexColor(currentCount)
-  const textColor = isLightColor(bgColor) ? "#000000" : "#FFFFFF"
+  const currentCount = waitlistCount ?? 21
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -326,22 +309,25 @@ function WaitlistForm({
         Join Waitlist
       </Button>
 
-      {/* ————————— HEX DISPLAY + BG SYNC ————————— */}
+      {/* ————————— JOIN COUNT DISPLAY ————————— */}
       <div className="flex items-center justify-center w-full mb-4">
         <div className="inline-flex items-center gap-3 rounded-full backdrop-blur-sm">
-          <div
-            className="flex items-center px-3 py-0.7 border border-white/[0.07] transition-colors duration-700"
-            style={{ backgroundColor: bgColor }}
-          >
-            <span
-              className="font-mono text-sm transition-colors duration-700 flex items-center"
-              style={{ color: textColor }}
-            >
-              {bgColor.toUpperCase()}
-            </span>
+          <div className="flex items-center px-4 py-0.4 border border-white/[0.07]">
+            <NumberFlow
+              value={currentCount}
+              className="font-mono text-sm text-ex-foreground"
+              transformTiming={{
+                duration: 700,
+                easing: "ease-out",
+              }}
+              format={{
+                useGrouping: true,
+                minimumIntegerDigits: 1,
+              }}
+            />
           </div>
           <span className="text-xs font-mono text-ex-foreground/80 uppercase tracking-wider">
-            ILLUMINATE.
+            early adopters ahead
           </span>
         </div>
       </div>

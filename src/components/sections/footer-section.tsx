@@ -7,47 +7,8 @@ import { siteConfig } from "@/lib/config";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
 export function FooterSection() {
   const tablet = useMediaQuery("(max-width: 1024px)");
-  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    const fetchWaitlistCount = async () => {
-      try {
-        const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbyzG-gebmuiUeknVhtT10Ytnnc4cBdIXxsFVYiWjvIlSqeBKgZxLeTQFnaTjJImebNe_w/exec"
-        );
-        const data = await response.json();
-        if (data.status === "ok" && typeof data.count === "number") {
-          setWaitlistCount(data.count);
-        }
-      } catch (error) {
-        console.error("Failed to fetch waitlist count", error);
-      }
-    };
-
-    fetchWaitlistCount();
-  }, []);
-
-  const getHexColor = (count: number) => {
-    const scaled = count * 67109;
-    const hex = Math.min(scaled, 0xffffff).toString(16).padStart(6, "0");
-    return `#${hex}`;
-  };
-
-  const isLightColor = (hex: string) => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance > 0.5;
-  };
-
-  const currentCount = waitlistCount ?? 0;
-  const bgColor = getHexColor(currentCount);
-  const textColor = isLightColor(bgColor) ? "#000000" : "#FFFFFF";
 
   return (
     <footer id="footer" className="w-full pb-0">
@@ -104,20 +65,7 @@ export function FooterSection() {
       </div>
       <div className="absolute bottom-4 left-6 right-6 z-1 text-center">
           <div className="text-xs text-muted-foreground mb-[2vh] bg-background p-1 flex items-center justify-center gap-2">
-            <span>© {new Date().getFullYear()} Sequence3 // CS-22.</span>
-            <div className="flex items-center justify-center bg-background">
-            <div
-              className="w-fit px-3 py-[1/2rem] border border-white/[0.07] rounded-xs transition-colors duration-700"
-              style={{ backgroundColor: bgColor }}
-            >
-              <span
-                className="font-mono text-sm transition-colors duration-700"
-                style={{ color: textColor }}
-              >
-                {bgColor.toUpperCase()}
-              </span>
-            </div>
-          </div>
+            <span>© {new Date().getFullYear()} Sequence3 // CS-22. All Rights Reserved.</span>
           </div>
       </div>
       <div className="w-full h-48 md:h-64 relative mt-24 z-0">
