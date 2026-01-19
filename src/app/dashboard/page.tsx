@@ -75,7 +75,7 @@ export default function DashboardPage() {
           {posts.map((post) => (
             <Link
               key={post.id}
-              href={`/dashboard/posts/${post.slug || 'edit'}`} // Fallback if slug missing locally
+              href={`/dashboard/posts/${post.slug || 'edit'}`} // Go to edit page
               className="group relative flex flex-col rounded-xl border border-border bg-card overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300"
             >
               {/* Cover Image Area */}

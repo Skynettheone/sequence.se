@@ -9,8 +9,22 @@ export const metadata: Metadata = {
   description: "A collection of articles on AI, customer engagement, and business insights.",
 };
 
-export default function BlogPage() {
-  const allPosts = getAllPosts();
+import { getAllPostsFromDB } from "@/features/blog/data/supabase-posts";
+
+export default async function BlogPage() {
+  const filePosts = getAllPosts();
+  const dbPosts = await getAllPostsFromDB();
+
+  // Combine posts, prioritizing DB posts if slug conflicts
+  const allPostsMap = new Map();
+  
+  [...filePosts, ...dbPosts].forEach(post => {
+    allPostsMap.set(post.slug, post);
+  });
+
+  const allPosts = Array.from(allPostsMap.values()).sort((a, b) => {
+    return new Date(b.metadata.createdAt).getTime() - new Date(a.metadata.createdAt).getTime();
+  });
 
   return (
     <section className="flex flex-col items-center w-full z-0 relative">
@@ -35,7 +49,7 @@ export default function BlogPage() {
           {allPosts.map((post, index) => (
             <div
               key={post.slug}
-              className={`relative p-3 before:absolute before:hidden md:before:block before:left-0 before:top-6 before:bottom-6 before:z-10 before:w-px before:bg-border before:content-[''] after:absolute after:top-0 after:left-6 after:right-6 after:z-10 after:h-px after:bg-border after:content-[''] first:before:hidden first:after:hidden md:[&:nth-child(2)]:after:hidden lg:[&:nth-child(3)]:after:hidden`}
+              className="relative p-3"
             >
               <PostItem
                 post={post}

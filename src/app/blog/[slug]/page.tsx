@@ -81,40 +81,43 @@ export default async function BlogPostPage(props: Props) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          // Custom components for rich media
-          img: ({ src, alt }) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={src}
-              alt={alt || ""}
-              className="rounded-xl w-full"
-              loading="lazy"
-            />
-          ),
+          p: ({ children, node }) => {
+            if (node?.children?.length === 1) {
+              const child = node.children[0] as any;
+              if (child?.tagName === 'a' && child?.properties?.href) {
+                const href = child.properties.href;
+                const isYoutube = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/.test(href);
+                if (isYoutube) {
+                  return <div className="my-6">{children}</div>;
+                }
+              }
+            }
+            return <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>;
+          },
           a: ({ href, children }) => {
-            // YouTube embed detection
-            const youtubeMatch = href?.match(
-              /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/
-            );
+            const youtubeMatch = href?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
             if (youtubeMatch) {
               const videoId = youtubeMatch[1];
               return (
-                <div className="relative aspect-video w-full my-4">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoId}`}
-                    title="YouTube video"
-                    className="absolute inset-0 w-full h-full rounded-xl"
-                    allowFullScreen
-                  />
+                <div className="not-prose w-full my-8">
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-border bg-black">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      title={String(children) || "YouTube video player"}
+                      className="absolute top-0 left-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
               );
             }
-            return (
-              <a href={href} target="_blank" rel="noopener noreferrer">
-                {children}
-              </a>
-            );
+            return <a href={href} target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">{children}</a>;
           },
+          img: ({ src, alt }) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={src} alt={alt || ''} className="rounded-xl border border-border shadow-sm w-full my-8" loading="lazy" />
+          ),
           code: ({ className, children, ...props }) => {
             // Simple code block styling
             const isInline = !className;

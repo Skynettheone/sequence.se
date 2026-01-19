@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: 'i.postimg.cc',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'r3.sequence3.se',
+        pathname: '/**',
+      },
     ],
   },
 

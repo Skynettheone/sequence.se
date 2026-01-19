@@ -9,6 +9,7 @@ export interface DBPost {
   cover_image: string | null;
   is_published: boolean;
   created_at: string;
+  updated_at: string;
 }
 
 export interface Post {
@@ -17,6 +18,7 @@ export interface Post {
     description: string;
     image?: string;
     createdAt: string;
+    updatedAt: string;
     pinned?: boolean;
     category?: string;
   };
@@ -32,6 +34,7 @@ function transformPost(dbPost: DBPost): Post {
       description: dbPost.excerpt || "",
       image: dbPost.cover_image || undefined,
       createdAt: dbPost.created_at,
+      updatedAt: dbPost.updated_at || dbPost.created_at,
     },
     slug: dbPost.slug,
     content: dbPost.content,
