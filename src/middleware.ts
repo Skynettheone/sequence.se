@@ -1,24 +1,64 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { createClient } from '@supabase/supabase-js';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Force HTTPS redirect in production
-  // Check both the URL protocol and the forwarded protocol header
-  const isProduction = process.env.NODE_ENV === 'production'
-  const forwardedProto = request.headers.get('x-forwarded-proto')
-  const urlProtocol = request.nextUrl.protocol
-  
+  const isProduction = process.env.NODE_ENV === 'production';
+  const forwardedProto = request.headers.get('x-forwarded-proto');
+  const urlProtocol = request.nextUrl.protocol;
+
   if (
     isProduction &&
     urlProtocol === 'http:' &&
     forwardedProto !== 'https'
   ) {
-    const url = request.nextUrl.clone()
-    url.protocol = 'https:'
-    return NextResponse.redirect(url, 301)
+    const url = request.nextUrl.clone();
+    url.protocol = 'https:';
+    return NextResponse.redirect(url, 301);
   }
 
-  return NextResponse.next()
+  // Dashboard auth protection
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    // Skip auth check for login page
+    if (request.nextUrl.pathname === '/dashboard/login') {
+      return NextResponse.next();
+    }
+
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.error('Missing Supabase credentials');
+      return NextResponse.next();
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    // Get access token from cookie
+    const accessToken = request.cookies.get('sb-access-token')?.value;
+    const refreshToken = request.cookies.get('sb-refresh-token')?.value;
+
+    if (!accessToken) {
+      const loginUrl = new URL('/dashboard/login', request.url);
+      loginUrl.searchParams.set('redirectTo', request.nextUrl.pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    // Verify session
+    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+
+    if (error || !user) {
+      const loginUrl = new URL('/dashboard/login', request.url);
+      loginUrl.searchParams.set('redirectTo', request.nextUrl.pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // Set pathname header for layout to use
+  const response = NextResponse.next();
+  response.headers.set('x-pathname', request.nextUrl.pathname);
+  return response;
 }
 
 export const config = {
@@ -33,5 +73,4 @@ export const config = {
      */
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|xml|txt)).*)',
   ],
-}
-
+};
