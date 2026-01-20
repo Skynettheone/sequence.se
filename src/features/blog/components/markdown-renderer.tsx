@@ -3,11 +3,36 @@
 import * as React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { codeToHtml } from "shiki";
 
 interface MarkdownRendererProps {
   content: string;
+}
+
+function CodeBlock({ code, language }: { code: string; language: string }) {
+  const [html, setHtml] = React.useState<string>("");
+
+  React.useEffect(() => {
+    codeToHtml(code, {
+      lang: language,
+      theme: "github-dark",
+    }).then(setHtml);
+  }, [code, language]);
+
+  if (!html) {
+    return (
+      <pre className="rounded-md border border-border bg-zinc-950 p-4 my-6 overflow-x-auto">
+        <code className="text-sm font-mono text-zinc-300">{code}</code>
+      </pre>
+    );
+  }
+
+  return (
+    <div
+      className="rounded-md border border-border !bg-zinc-950 !p-4 !my-6 not-prose overflow-x-auto [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_code]:text-sm"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 }
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
@@ -36,18 +61,10 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           pre: ({ children }) => <>{children}</>,
           code({ node, inline, className, children, ...props }: any) {
             const match = /language-(\w+)/.exec(className || "");
+            const code = String(children).replace(/\n$/, "");
+            
             return !inline && match ? (
-              <SyntaxHighlighter
-                {...props}
-                style={vscDarkPlus}
-                language={match[1]}
-                PreTag="div"
-                className="rounded-md border border-border !bg-zinc-950 !p-4 !my-6 not-prose"
-                showLineNumbers={true}
-                wrapLines={true}
-              >
-                {String(children).replace(/\n$/, "")}
-              </SyntaxHighlighter>
+              <CodeBlock code={code} language={match[1]} />
             ) : (
               <code
                 className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono"
@@ -104,3 +121,4 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
     </div>
   );
 }
+
